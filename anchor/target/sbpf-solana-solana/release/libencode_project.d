@@ -1,0 +1,1 @@
+/Users/danijelradomiljac/Desktop/encode_project/anchor/target/sbpf-solana-solana/release/libencode_project.rlib: /Users/danijelradomiljac/Desktop/encode_project/anchor/programs/encode_project/src/lib.rs

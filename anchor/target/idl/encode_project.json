@@ -8,54 +8,65 @@
   },
   "instructions": [
     {
-      "name": "close",
-      "discriminator": [98, 165, 201, 177, 108, 65, 206, 96],
-      "accounts": [
-        {
-          "name": "payer",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "encode_project",
-          "writable": true
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "decrement",
-      "discriminator": [106, 227, 168, 59, 248, 27, 150, 101],
-      "accounts": [
-        {
-          "name": "encode_project",
-          "writable": true
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "increment",
-      "discriminator": [11, 18, 104, 9, 104, 174, 59, 33],
-      "accounts": [
-        {
-          "name": "encode_project",
-          "writable": true
-        }
-      ],
-      "args": []
-    },
-    {
       "name": "initialize",
-      "discriminator": [175, 175, 109, 31, 13, 152, 155, 237],
+      "discriminator": [
+        175,
+        175,
+        109,
+        31,
+        13,
+        152,
+        155,
+        237
+      ],
       "accounts": [
         {
-          "name": "payer",
+          "name": "game_state",
           "writable": true,
-          "signer": true
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
         },
         {
-          "name": "encode_project",
+          "name": "game_vault",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "authority",
           "writable": true,
           "signer": true
         },
@@ -64,20 +75,9 @@
           "address": "11111111111111111111111111111111"
         }
       ],
-      "args": []
-    },
-    {
-      "name": "set",
-      "discriminator": [198, 51, 53, 241, 116, 29, 126, 194],
-      "accounts": [
-        {
-          "name": "encode_project",
-          "writable": true
-        }
-      ],
       "args": [
         {
-          "name": "value",
+          "name": "house_edge",
           "type": "u8"
         }
       ]
@@ -85,19 +85,40 @@
   ],
   "accounts": [
     {
-      "name": "EncodeProject",
-      "discriminator": [255, 176, 4, 245, 188, 253, 124, 25]
+      "name": "GameState",
+      "discriminator": [
+        144,
+        94,
+        208,
+        172,
+        248,
+        99,
+        134,
+        120
+      ]
     }
   ],
   "types": [
     {
-      "name": "EncodeProject",
+      "name": "GameState",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "count",
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "house_edge",
             "type": "u8"
+          },
+          {
+            "name": "total_bets",
+            "type": "u64"
+          },
+          {
+            "name": "total_wins",
+            "type": "u64"
           }
         ]
       }

@@ -1,0 +1,10 @@
+/Users/danijelradomiljac/Desktop/encode_project/anchor/target/sbpf-solana-solana/release/deps/libthiserror-d6b894c38181a1eb.rmeta: /Users/danijelradomiljac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/lib.rs /Users/danijelradomiljac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/aserror.rs /Users/danijelradomiljac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/display.rs /Users/danijelradomiljac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/provide.rs
+
+/Users/danijelradomiljac/Desktop/encode_project/anchor/target/sbpf-solana-solana/release/deps/libthiserror-d6b894c38181a1eb.rlib: /Users/danijelradomiljac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/lib.rs /Users/danijelradomiljac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/aserror.rs /Users/danijelradomiljac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/display.rs /Users/danijelradomiljac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/provide.rs
+
+/Users/danijelradomiljac/Desktop/encode_project/anchor/target/sbpf-solana-solana/release/deps/thiserror-d6b894c38181a1eb.d: /Users/danijelradomiljac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/lib.rs /Users/danijelradomiljac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/aserror.rs /Users/danijelradomiljac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/display.rs /Users/danijelradomiljac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/provide.rs
+
+/Users/danijelradomiljac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/lib.rs:
+/Users/danijelradomiljac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/aserror.rs:
+/Users/danijelradomiljac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/display.rs:
+/Users/danijelradomiljac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-1.0.63/src/provide.rs:
