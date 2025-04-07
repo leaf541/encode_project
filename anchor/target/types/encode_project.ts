@@ -87,6 +87,94 @@ export type EncodeProject = {
           "type": "u8"
         }
       ]
+    },
+    {
+      "name": "rollDice",
+      "discriminator": [
+        27,
+        140,
+        230,
+        215,
+        37,
+        178,
+        226,
+        114
+      ],
+      "accounts": [
+        {
+          "name": "gameState",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "gameVault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "player",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "betAmount",
+          "type": "u64"
+        },
+        {
+          "name": "betType",
+          "type": {
+            "defined": {
+              "name": "betType"
+            }
+          }
+        },
+        {
+          "name": "betValue",
+          "type": "u8"
+        }
+      ]
     }
   ],
   "accounts": [
@@ -104,7 +192,36 @@ export type EncodeProject = {
       ]
     }
   ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "betTooSmall",
+      "msg": "Bet amount must be at least 0.1 SOL"
+    },
+    {
+      "code": 6001,
+      "name": "invalidBetValue",
+      "msg": "Invalid bet value for the selected bet type"
+    }
+  ],
   "types": [
+    {
+      "name": "betType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "singleNumber"
+          },
+          {
+            "name": "evenOdd"
+          },
+          {
+            "name": "lowHigh"
+          }
+        ]
+      }
+    },
     {
       "name": "gameState",
       "type": {
