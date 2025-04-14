@@ -1,5 +1,5 @@
 {
-  "address": "4fbLcAMuK1XMSNDrxhACXwept4iDzP21E62eDVodEchb",
+  "address": "5NnmKs3bcjoheaDrVTogrgwtVKMTvnB8SSDtomcyH6N2",
   "metadata": {
     "name": "encode_project",
     "version": "0.1.0",
@@ -157,15 +157,7 @@
           "type": "u64"
         },
         {
-          "name": "bet_type",
-          "type": {
-            "defined": {
-              "name": "BetType"
-            }
-          }
-        },
-        {
-          "name": "bet_value",
+          "name": "selected_number",
           "type": "u8"
         }
       ]
@@ -194,28 +186,11 @@
     },
     {
       "code": 6001,
-      "name": "InvalidBetValue",
-      "msg": "Invalid bet value for the selected bet type"
+      "name": "InvalidNumber",
+      "msg": "Selected number must be between 1 and 6"
     }
   ],
   "types": [
-    {
-      "name": "BetType",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "SingleNumber"
-          },
-          {
-            "name": "EvenOdd"
-          },
-          {
-            "name": "LowHigh"
-          }
-        ]
-      }
-    },
     {
       "name": "GameState",
       "type": {

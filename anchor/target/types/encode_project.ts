@@ -5,7 +5,7 @@
  * IDL can be found at `target/idl/encode_project.json`.
  */
 export type EncodeProject = {
-  "address": "coUnmi3oBUtwtd9fjeAvSsJssXh5A5xyPbhpewyzRVF",
+  "address": "5NnmKs3bcjoheaDrVTogrgwtVKMTvnB8SSDtomcyH6N2",
   "metadata": {
     "name": "encodeProject",
     "version": "0.1.0",
@@ -163,15 +163,7 @@ export type EncodeProject = {
           "type": "u64"
         },
         {
-          "name": "betType",
-          "type": {
-            "defined": {
-              "name": "betType"
-            }
-          }
-        },
-        {
-          "name": "betValue",
+          "name": "selectedNumber",
           "type": "u8"
         }
       ]
@@ -200,28 +192,11 @@ export type EncodeProject = {
     },
     {
       "code": 6001,
-      "name": "invalidBetValue",
-      "msg": "Invalid bet value for the selected bet type"
+      "name": "invalidNumber",
+      "msg": "Selected number must be between 1 and 6"
     }
   ],
   "types": [
-    {
-      "name": "betType",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "singleNumber"
-          },
-          {
-            "name": "evenOdd"
-          },
-          {
-            "name": "lowHigh"
-          }
-        ]
-      }
-    },
     {
       "name": "gameState",
       "type": {

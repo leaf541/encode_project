@@ -1,5 +1,5 @@
-import DashboardFeature from '@/components/dashboard/dashboard-feature'
+import { DiceApp } from '@/components/roll/diceSpace';
 
 export default function Page() {
-  return <DashboardFeature />
+  return <DiceApp />;
 }
