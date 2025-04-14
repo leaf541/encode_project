@@ -9,6 +9,8 @@ import toast from 'react-hot-toast'
 import { useCluster } from '../cluster/cluster-data-access'
 import { useAnchorProvider } from '../solana/solana-provider'
 import { useTransactionToast } from '../ui/ui-layout'
+import { SystemProgram } from '@solana/web3.js'
+import { BN } from '@project-serum/anchor';
 
 export function useEncodeProjectProgram() {
   const { connection } = useConnection()
@@ -85,6 +87,53 @@ export function useEncodeProjectProgramAccount({ account }: { account: PublicKey
     },
   })
 
+  const diceRollMutation = useMutation({
+    mutationKey: ['encode_project', 'rollDice', { cluster, account }],
+    mutationFn: (params: { betAmount: number, betType: number, betValue: number }) => {
+      
+      const { betAmount, betType, betValue } = params;
+      const betAmountBN = new BN(betAmount);
+
+      const anchorBetType = betType === 0 
+        ? { singleNumber: {} } 
+        : betType === 1 
+          ? { evenOdd: {} } 
+          : { lowHigh: {} };
+
+      const [gameStatePda] = PublicKey.findProgramAddressSync(
+        [Buffer.from("game_state")],
+        program.programId
+      );
+      
+      const [gameVaultPda] = PublicKey.findProgramAddressSync(
+        [Buffer.from("game_vault")],
+        program.programId
+      );
+
+      const ctx = {
+        accounts: {
+          gameState: gameStatePda,
+          gameVault: gameVaultPda,
+          player: program.provider.publicKey,
+          systemProgram: SystemProgram.programId
+        }
+      }
+      
+      return program.methods
+        .rollDice(
+          betAmountBN,
+          anchorBetType,
+          betValue
+        )
+        .signers([])
+        .rpc(ctx as any);
+    },
+    onSuccess: (tx) => {
+      transactionToast(tx);
+      return accountQuery.refetch();
+    }
+  });
+
   const setMutation = useMutation({
     mutationKey: ['encode_project', 'set', { cluster, account }],
     mutationFn: (value: number) => program.methods.set(value).accounts({ encode_project: account }).rpc(),
@@ -99,6 +148,7 @@ export function useEncodeProjectProgramAccount({ account }: { account: PublicKey
     closeMutation,
     decrementMutation,
     incrementMutation,
+    diceRollMutation,
     setMutation,
   }
 }
