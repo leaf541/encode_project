@@ -13,9 +13,12 @@ const links: { label: string; path: string }[] = [
   { label: 'Account', path: '/account' },
   { label: 'Clusters', path: '/clusters' },
   { label: 'EncodeProject Program', path: '/encode_project' },
+  { label: 'Roll Dice', path: '/roll' },
 ]
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+
+
   return (
     <html lang="en">
       <body>

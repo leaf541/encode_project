@@ -9,9 +9,12 @@ import toast, { Toaster } from 'react-hot-toast'
 import { AccountChecker } from '../account/account-ui'
 import { ClusterChecker, ClusterUiSelect, ExplorerLink } from '../cluster/cluster-ui'
 import { WalletButton } from '../solana/solana-provider'
+import {useWallet} from "@solana/wallet-adapter-react";
 
 export function UiLayout({ children, links }: { children: ReactNode; links: { label: string; path: string }[] }) {
   const pathname = usePathname()
+  const wallet = useWallet();
+
 
   return (
     <div className="h-full flex flex-col">
@@ -21,13 +24,18 @@ export function UiLayout({ children, links }: { children: ReactNode; links: { la
             EncodeProject
           </Link>
           <ul className="menu menu-horizontal px-1 space-x-2">
-            {links.map(({ label, path }) => (
-              <li key={path}>
-                <Link className={pathname.startsWith(path) ? 'active' : ''} href={path}>
-                  {label}
-                </Link>
-              </li>
-            ))}
+            {links.map(({ label, path }) => {
+              if(label === 'Roll Dice' && !wallet.connected) {
+                return null
+              }
+             return (
+                  <li key={path}>
+                    <Link className={pathname.startsWith(path) ? 'active' : ''} href={path}>
+                      {label}
+                    </Link>
+                  </li>
+              )
+            })}
           </ul>
         </div>
         <div className="flex-none space-x-2">
