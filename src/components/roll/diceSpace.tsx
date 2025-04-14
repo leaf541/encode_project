@@ -143,7 +143,7 @@ function DiceLabel({ text, position, rotation }: DiceLabelProps) {
 
 export const DiceApp = () => {
   const wallet = useWallet();
-  const { publicKey } = wallet;
+  const { publicKey, sendTransaction } = wallet;
   const [amount, setAmount] = useState<number | ''>('');
   const rollRef = useRef<((face: number) => Promise<void>) | null>(null);
   const [singleNumber, setSingleNumber] = useState<number | ''>('');
@@ -211,7 +211,7 @@ export const DiceApp = () => {
         return;
       }
 
-      const tx = await (program as any).methods
+      const transaction = await (program as any).methods
         .rollDice(new BN(betInLamports), singleNumber)
         .accounts({
           gameState: gameStateKey,
@@ -219,13 +219,20 @@ export const DiceApp = () => {
           player: publicKey,
           systemProgram: web3.SystemProgram.programId,
         })
-        .rpc();
+        .transaction();
 
-      console.log('Transaction signature:', tx);
+      const signature = await sendTransaction(transaction, connection);
 
-      await connection.confirmTransaction(tx);
+      const { blockhash, lastValidBlockHeight } =
+        await connection.getLatestBlockhash();
 
-      const txDetails = await connection.getTransaction(tx, {
+      await connection.confirmTransaction({
+        blockhash,
+        lastValidBlockHeight,
+        signature,
+      });
+
+      const txDetails = await connection.getTransaction(signature, {
         maxSupportedTransactionVersion: 0,
       });
 
